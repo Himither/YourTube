@@ -56,3 +56,7 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 * Hide Hyperchat scrollbars
 
 ## Changelog
+
+### 1.1.0
+
+* Add emoji picker height option
