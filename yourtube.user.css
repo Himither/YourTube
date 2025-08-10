@@ -1,10 +1,7 @@
 /* ==UserStyle==
 
 @name						YourTube
-@namespace					github.com/Himither
-@homepageURL			    https://github.com/Himither/YourTube
-@supportURL					https://github.com/Himither/YourTube/issues
-@updateURL				    https://raw.githubusercontent.com/Himither/YourTube/master/yourtube.user.css
+@namespace					https://github.com/Himither
 @version					1.0.0
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
 @author						Himither
@@ -58,432 +55,447 @@
 @var checkbox				hc-hideScrollbars					"Hide Hyperchat scrollbars" 									0
 
 ==/UserStyle== */
-@-moz-document url-prefix("https://www.youtube.com/")
-{
-    if yt-darknesss {
-        html[dark] {
-            --yt-spec-base-background: black;
-        }
+@-moz-document url-prefix("https://www.youtube.com/") {
 
-        #masthead-container #background,
-        #frosted-glass {
-            background: black !important;
-        }
+	if yt-darknesss {
+		html[dark] {
+			--yt-spec-base-background: black;
+		}
 
-        ytd-app[is-shorts-page] {
-            background-color: black;
-        }
-    }
+		#masthead-container #background,
+		#frosted-glass {
+			background: black !important;
+		}
 
-    if yt-menuWidth {
-        tp-yt-app-drawer #contentContainer,
-        #guide-renderer {
-            width: yt-menuWidth !important;
-        }
+		ytd-app[is-shorts-page] {
+			background-color: black;
+		}
+	}
 
-        ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app {
-            margin-left: var(--ytd-mini-guide-width);
-        }
+	if yt-menuWidth {
 
-        tp-yt-app-drawer #contentContainer {
-            background-color: rgba(0, 0, 0, 0.5) !important;
-            backdrop-filter: blur(10px);
-        }
+		tp-yt-app-drawer #contentContainer,
+		#guide-renderer {
+			width: yt-menuWidth !important;
+		}
 
-        #guide-content {
-            background-color: unset !important;
-        }
+		ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app {
+			margin-left: var(--ytd-mini-guide-width);
+		}
 
-        if yt-hideMinimenu {
-            ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app {
-                margin-left: unset;
-            }
-        }
-    }
+		tp-yt-app-drawer #contentContainer {
+			background-color: rgba(0, 0, 0, 0.5) !important;
+			backdrop-filter: blur(10px);
+		}
 
-    if yt-hideMinimenu {
-        ytd-mini-guide-renderer {
-            display: none;
-        }
+		#guide-content {
+			background-color: unset !important;
+		}
 
-        ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
-            margin-left: 0;
-        }
+		if yt-hideMinimenu {
+			ytd-app[guide-persistent-and-visible] ytd-page-manager.ytd-app {
+				margin-left: unset;
+			}
+		}
+	}
 
-        #shorts-container {
-            margin-right: unset !important;
-        }
+	if yt-hideMinimenu {
+		ytd-mini-guide-renderer {
+			display: none;
+		}
 
-        ytd-browse[mini-guide-visible] ytd-playlist-header-renderer.ytd-browse {
-            left: unset;
-        }
+		ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
+			margin-left: 0;
+		}
 
-        :is(ytd-browse[mini-guide-visible], ytd-browse[guide-persistent-and-visible]) .page-header-sidebar.ytd-browse {
-            left: unset;
-        }
-    }
+		#shorts-container {
+			margin-right: unset !important;
+		}
 
-    if yt-hideShortsSidebar {
-        ytd-reel-shelf-renderer {
-            display: none;
-        }
-    }
+		ytd-browse[mini-guide-visible] ytd-playlist-header-renderer.ytd-browse {
+			left: unset;
+		}
 
-    if yt-hideShortsHome {
-        #content ytd-rich-shelf-renderer:has(#dismissible):not(:has(ytd-post-renderer)) {
-            display: none;
-        }
-    }
+		:is(ytd-browse[mini-guide-visible], ytd-browse[guide-persistent-and-visible]) .page-header-sidebar.ytd-browse {
+			left: unset;
+		}
+	}
 
-    if yt-posts {
-        #content ytd-rich-section-renderer:has(ytd-post-renderer) {
-            order: -1;
-        }
-    }
+	if yt-hideShortsSidebar {
+		ytd-reel-shelf-renderer {
+			display: none;
+		}
+	}
 
-    if yt-hideScrollbars {
-        * {
-            scrollbar-width: none !important;
-        }
-    }
+	if yt-hideShortsHome {
+		#content ytd-rich-shelf-renderer:has(#dismissible):not(:has(ytd-post-renderer)) {
+			display: none;
+		}
+	}
+
+	if yt-posts {
+		#content ytd-rich-section-renderer:has(ytd-post-renderer) {
+			order: -1;
+		}
+	}
+
+	if yt-hideScrollbars {
+		* {
+			scrollbar-width: none !important;
+		}
+	}
 }
 
 @-moz-document url-prefix("https://www.youtube.com/watch"),
 url-prefix("https://www.youtube.com/live"),
 url-prefix("https://www.youtube.com/clip"),
-url-prefix("https://www.youtube.com/shorts")
-{
-    #anchored-panel:has([target-id="engagement-panel-structured-description"][visibility="ENGAGEMENT_PANEL_VISIBILITY_HIDDEN"]):not(
-            :has([target-id="engagement-panel-comments-section"][visibility="ENGAGEMENT_PANEL_VISIBILITY_EXPANDED"])
-        ) {
-        //This is a little fix for a stupid bug where the left border of the description/comment panel on the short page is visible even when the panel is hidden
-        border-color: transparent;
-    }
+url-prefix("https://www.youtube.com/shorts") {
 
-    .ytp-offline-slate-background {
-        //Ensures that stream thumbnails aren't cropped
-        background-size: contain;
-    }
+	#anchored-panel:has([target-id="engagement-panel-structured-description"][visibility="ENGAGEMENT_PANEL_VISIBILITY_HIDDEN"]):not(:has([target-id="engagement-panel-comments-section"][visibility="ENGAGEMENT_PANEL_VISIBILITY_EXPANDED"])) {
+		//This is a little fix for a stupid bug where the left border of the description/comment panel on the short page is visible even when the panel is hidden
+		border-color: transparent;
+	}
 
-    if yt-darknesss {
-        .header.ytd-playlist-panel-renderer {
-            background: var(--yt-spec-base-background);
-        }
-    }
+	.ytp-offline-slate-background {
+		//Ensures that stream thumbnails aren't cropped
+		background-size: contain;
+	}
 
-    if yt-centerDefaultView {
-        ytd-watch-flexy[is-four-three-to-sixteen-nine-video_] {
-            overflow-x: hidden;
+	if yt-darknesss {
+		.header.ytd-playlist-panel-renderer {
+			background: var(--yt-spec-base-background);
+		}
+	}
 
-            #player:has(#movie_player.playing-mode),
-            #player:has(#movie_player.seeking-mode) {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: calc(100dvh - ((var(--ytd-margin-6x) + var(--ytd-toolbar-offset))));
-            }
+	if yt-centerDefaultView {
 
-            #player:has(#movie_player:is(.playing-mode, .seeking-mode)) > #player-container-outer {
-                flex-grow: 1;
-                transform: translateY(calc(var(--ytd-margin-6x) / -2 + var(--ytd-toolbar-offset) / -2));
-            }
+		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_] {
+			overflow-x: hidden;
 
-            #columns:has(#movie_player.playing-mode):has(#chat[collapsed]),
-            #columns:has(#movie_player.seeking-mode):has(#chat[collapsed]),
-            #columns:has(#movie_player.playing-mode):not(:has(#chat)),
-            #columns:has(#movie_player.seeking-mode):not(:has(#chat)) {
-                transform: translateX(calc(var(--ytd-watch-flexy-sidebar-width) / 2));
-            }
+			#player:has(#movie_player.playing-mode),
+			#player:has(#movie_player.seeking-mode) {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: calc(100dvh - ((var(--ytd-margin-6x) + var(--ytd-toolbar-offset))));
+			}
 
-            #secondary {
-                visibility: visible;
-                opacity: 1;
-            }
+			#player:has(#movie_player:is(.playing-mode, .seeking-mode))>#player-container-outer {
+				flex-grow: 1;
+				transform: translateY(calc(var(--ytd-margin-6x)/-2 + var(--ytd-toolbar-offset)/-2));
+			}
 
-            #columns:has(#movie_player:is(.playing-mode, .seeking-mode)):has(#chat[collapsed]) #secondary,
-            #columns:has(#movie_player.playing-mode):not(:has(#chat)) #secondary,
-            #columns:has(#movie_player.seeking-mode):not(:has(#chat)) #secondary {
-                visibility: hidden;
-                opacity: 0;
-            }
-        }
-    }
+			#columns:has(#movie_player.playing-mode):has(#chat[collapsed]),
+			#columns:has(#movie_player.seeking-mode):has(#chat[collapsed]),
+			#columns:has(#movie_player.playing-mode):not(:has(#chat)),
+			#columns:has(#movie_player.seeking-mode):not(:has(#chat)) {
+				transform: translateX(calc(var(--ytd-watch-flexy-sidebar-width) / 2));
+			}
 
-    if yt-centerTheatreMode {
-        ytd-watch-flexy[full-bleed-player=""] #full-bleed-container {
-            min-height: calc(100dvh - var(--ytd-toolbar-offset)) !important;
-        }
+			#secondary {
+				visibility: visible;
+				opacity: 1;
+			}
 
-        .html5-video-container {
-            height: 100% !important;
-        }
+			#columns:has(#movie_player:is(.playing-mode, .seeking-mode)):has(#chat[collapsed]) #secondary,
+			#columns:has(#movie_player.playing-mode):not(:has(#chat)) #secondary,
+			#columns:has(#movie_player.seeking-mode):not(:has(#chat)) #secondary {
+				visibility: hidden;
+				opacity: 0;
+			}
+		}
+	}
 
-        #movie_player .video-stream {
-            left: 0 !important;
-            top: 0 !important;
-            object-fit: contain !important;
-            height: 100% !important;
-            width: 100% !important;
-        }
+	if yt-centerTheatreMode {
+		ytd-watch-flexy[full-bleed-player=""] #full-bleed-container {
+			min-height: calc(100dvh - var(--ytd-toolbar-offset)) !important;
+		}
 
-        if yt-pauseHeader {
-            ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])):has(ytd-watch-flexy[full-bleed-player=""]) {
-                margin-top: 0 !important;
-            }
+		.html5-video-container {
+			height: 100% !important;
+		}
 
-            ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) ytd-watch-flexy[full-bleed-player=""] #full-bleed-container {
-                min-height: 100dvh !important;
-            }
+		#movie_player .video-stream {
+			left: 0 !important;
+			top: 0 !important;
+			object-fit: contain !important;
+			height: 100% !important;
+			width: 100% !important;
+		}
 
-            ytd-watch-flexy[full-bleed-player=""] #chat {
-                transition: unset !important;
-            }
+		if yt-pauseHeader {
 
-            ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) ytd-watch-flexy[full-bleed-player=""] #chat {
-                top: 0 !important;
-            }
-        }
-    }
+			ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])):has(ytd-watch-flexy[full-bleed-player=""]) {
+				margin-top: 0 !important;
+			}
 
-    if yt-playlistChatFullHeight {
-        #secondary {
-            padding-top: 0 !important;
-        }
+			ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) ytd-watch-flexy[full-bleed-player=""] #full-bleed-container {
+				min-height: 100dvh !important;
+			}
 
-        #secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-            height: calc(100dvh - var(--ytd-toolbar-height)) !important;
-        }
+			ytd-watch-flexy[full-bleed-player=""] #chat {
+				transition: unset !important;
+			}
 
-        #secondary:has(#playlist[collapsed]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-            height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-6x) - 68px) !important;
-            margin-bottom: var(--ytd-margin-6x);
-        }
+			ytd-page-manager:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) ytd-watch-flexy[full-bleed-player=""] #chat {
+				top: 0 !important;
+			}
+		}
+	}
 
-        #secondary #chat:not([collapsed]) {
-            height: 100dvh !important;
-            min-height: 0 !important;
-            margin-bottom: 0 !important;
-        }
+	if yt-playlistChatFullHeight {
+		#secondary {
+			padding-top: 0 !important;
+		}
 
-        #secondary #playlist:not([collapsed]) {
-            height: calc(100dvh - var(--ytd-toolbar-height)) !important;
-            max-height: unset !important;
-            margin-bottom: 0 !important;
-        }
+		#secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
+			height: calc(100dvh - var(--ytd-toolbar-height)) !important;
+		}
 
-        #secondary #playlist:not([collapsed]) #container {
-            max-height: calc(100% - var(--ytd-toolbar-height)) !important;
-        }
+		#secondary:has(#playlist[collapsed]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
+			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-6x) - 68px) !important;
+			margin-bottom: var(--ytd-margin-6x);
+		}
 
-        #secondary #chat-container:not(:has(#chat[collapsed])) #chat {
-            height: calc(100% - var(--ytd-toolbar-height)) !important;
-        }
-    }
+		#secondary #chat:not([collapsed]) {
+			height: 100dvh !important;
+			min-height: 0 !important;
+			margin-bottom: 0 !important;
+		}
 
-    if yt-pauseHeader {
-        ytd-app:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) #masthead-container {
-            visibility: hidden;
-            background-color: var(--yt-spec-base-background) !important;
-        }
-    }
+		#secondary #playlist:not([collapsed]) {
+			height: calc(100dvh - var(--ytd-toolbar-height)) !important;
+			max-height: unset !important;
+			margin-bottom: 0 !important;
+		}
 
-    if yt-borderlessChat {
-        #chat {
-            border-color: transparent !important;
-        }
-    }
+		#secondary #playlist:not([collapsed]) #container {
+			max-height: calc(100% - var(--ytd-toolbar-height)) !important;
+		}
 
-    if yt-borderlessPlaylist {
-        #container.ytd-playlist-panel-renderer {
-            border: 1px solid transparent;
-        }
-    }
+		#secondary #chat-container:not(:has(#chat[collapsed])) #chat {
+			height: calc(100% - var(--ytd-toolbar-height)) !important;
+		}
+	}
 
-    if yt-saveButtonTweaks {
-        #upload-info.ytd-video-owner-renderer {
-            display: none;
-        }
+	if yt-pauseHeader {
 
-        ytd-video-owner-renderer:has(:is(.yt-simple-endpoint:hover, #upload-info:hover)) #upload-info.ytd-video-owner-renderer {
-            display: flex;
-        }
+		ytd-app:has([class*="playing-mode"]):not(:has([class*="unstarted-mode"])) #masthead-container {
+			visibility: hidden;
+			background-color: var(--yt-spec-base-background) !important;
+		}
+	}
 
-        :is(#owner, #actions.ytd-watch-metadata) {
-            width: fit-content;
-            min-width: unset;
-        }
+	if yt-borderlessChat {
+		#chat {
+			border-color: transparent !important;
+		}
+	}
 
-        ytd-subscribe-button-renderer {
-            width: fit-content !important;
-        }
+	if yt-borderlessPlaylist {
+		#container.ytd-playlist-panel-renderer {
+			border: 1px solid transparent;
+		}
+	}
 
-        :is(yt-button-view-model, #flexible-item-buttons, ytd-subscribe-button-renderer[subscribed]) .yt-spec-button-shape-next__button-text-content {
-            display: none;
-        }
+	if yt-saveButtonTweaks {
+		#upload-info.ytd-video-owner-renderer {
+			display: none;
+		}
 
-        :is(yt-button-view-model, #flexible-item-buttons)
-            .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-leading
-            .yt-spec-button-shape-next__icon {
-            margin: 0;
-        }
+		ytd-video-owner-renderer:has(:is(.yt-simple-endpoint:hover, #upload-info:hover)) #upload-info.ytd-video-owner-renderer {
+			display: flex;
+		}
 
-        #flexible-item-buttons {
-            display: flex;
-        }
+		:is(#owner, #actions.ytd-watch-metadata) {
+			width: fit-content;
+			min-width: unset;
+		}
 
-        #flexible-item-buttons > yt-button-view-model:has([d*="M18 4v15"]) {
-            order: -1;
+		ytd-subscribe-button-renderer {
+			width: fit-content !important;
+		}
 
-            & button {
-                background-color: #f1f1f1;
-                color: black;
-            }
-        }
-    }
+		:is(yt-button-view-model, #flexible-item-buttons, ytd-subscribe-button-renderer[subscribed]) .yt-spec-button-shape-next__button-text-content {
+			display: none;
+		}
 
-    if ytc-chatWidth!=402 {
-        ytd-watch-flexy {
-            --ytd-watch-flexy-sidebar-width: ytc-chatWidth !important;
-        }
-    }
+		:is(yt-button-view-model, #flexible-item-buttons) .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-leading .yt-spec-button-shape-next__icon {
+			margin: 0;
+		}
+
+		#flexible-item-buttons {
+			display: flex;
+		}
+
+		#flexible-item-buttons>yt-button-view-model:has([d*="M18 4v15"]) {
+			order: -1;
+
+			& button {
+				background-color: #f1f1f1;
+				color: black;
+			}
+		}
+	}
+
+	if ytc-chatWidth!=402 {
+		ytd-watch-flexy {
+			--ytd-watch-flexy-sidebar-width: ytc-chatWidth !important;
+		}
+	}
 }
 
-@-moz-document url-prefix("https://www.youtube.com/live_chat")
-{
-    if yt-darknesss {
-        yt-live-chat-message-input-renderer,
-        yt-live-chat-header-renderer,
-        yt-live-chat-ticker-renderer,
-        ytd-menu-popup-renderer,
-        #chat-messages,
-        #search-panel,
-        #contentWrapper {
-            background: black !important;
-        }
+@-moz-document url-prefix("https://www.youtube.com/live_chat") {
 
-        .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text:hover {
-            background: #202020 !important;
-        }
+	if yt-darknesss {
 
-        #separator.yt-live-chat-renderer,
-        #panel-pages.yt-live-chat-renderer {
-            border: black !important;
-        }
-    }
+		yt-live-chat-message-input-renderer,
+		yt-live-chat-header-renderer,
+		yt-live-chat-ticker-renderer,
+		ytd-menu-popup-renderer,
+		#chat-messages,
+		#search-panel,
+		#contentWrapper {
+			background: black !important;
+		}
 
-    if ytc-customLabel !="Default" {
-        #label-text {
-            display: none;
-        }
+		.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text:hover {
+			background: #202020 !important;
+		}
 
-        #label-icon {
-            width: max-content !important;
+		#separator.yt-live-chat-renderer,
+		#panel-pages.yt-live-chat-renderer {
+			border: black !important;
+		}
+	}
 
-            &::before {
-                content: ytc-customLabel;
-            }
-        }
-    }
+	if ytc-customLabel !="Default" {
 
-    if ytc-hideTopFansButton {
-        #viewer-leaderboard-entry-point {
-            display: none;
-        }
-    }
+		#label-text {
+			display: none;
+		}
 
-    if ytc-hideChatMenuButton {
-        yt-live-chat-button {
-            display: none !important;
-        }
-    }
+		#label-icon {
+			width: max-content !important;
 
-    if ytc-hideChatCloseButton {
-        div#close-button {
-            display: none !important;
-        }
-    }
+			&::before {
+				content: ytc-customLabel;
+			}
+		}
+	}
 
-    if theme!=none {
-        div#content #author-name:not(.moderator) {
-            color: var(--color-1) !important;
-        }
+	if ytc-hideTopFansButton {
 
-        div#content #author-name.moderator {
-            color: green !important;
-        }
+		#viewer-leaderboard-entry-point {
+			display: none;
+		}
+	}
 
-        #visible-banners span#author-name.owner {
-            color: black !important;
-        }
+	if ytc-hideChatMenuButton {
 
-        div#content :is(#author-name.member, span#title::after) {
-            color: var(--color-2) !important;
-        }
+		yt-live-chat-button {
+			display: none !important;
+		}
+	}
 
-        span#title::after,
-        #trigger :is(#label-text, #label-icon) {
-            color: var(--color-2) !important;
-            text-shadow: -2px 2px 1px var(--color-1) !important;
-        }
-    }
+	if ytc-hideChatCloseButton {
 
-    if theme==aqutan {
-        :root {
-            --color-1: rgb(59, 136, 213);
-            --color-2: rgb(240, 98, 146);
-        }
-    }
+		div#close-button {
+			display: none !important;
+		}
+	}
 
-    if ytc-hideScrollbars {
-        * {
-            scrollbar-width: none !important;
-        }
-    }
+	if theme!=none {
+
+		div#content #author-name:not(.moderator) {
+			color: var(--color-1) !important;
+		}
+
+		div#content #author-name.moderator {
+			color: green !important;
+		}
+
+
+		#visible-banners span#author-name.owner {
+			color: black !important;
+		}
+
+		div#content :is(#author-name.member,
+		span#title::after) {
+			color: var(--color-2) !important;
+		}
+
+		span#title::after,
+		#trigger :is(#label-text,
+		#label-icon) {
+			color: var(--color-2) !important;
+			text-shadow: -2px 2px 1.0px var(--color-1) !important;
+		}
+	}
+
+	if theme==aqutan {
+
+		:root {
+			--color-1: rgb(59, 136, 213);
+			--color-2: rgb(240, 98, 146);
+		}
+	}
+
+	if ytc-hideScrollbars {
+
+		* {
+			scrollbar-width: none !important;
+		}
+	}
 }
 
-@-moz-document url-prefix("https://www.youtube.com/embed/hyperchat_embed")
-{
-    if yt-darknesss {
-        .hyperchat-root,
-        .hyperchat-root > div.w-full > div.flex {
-            background: black !important;
-        }
-    }
+@-moz-document url-prefix("https://www.youtube.com/embed/hyperchat_embed") {
 
-    if hc-hideHyperchatInfo {
-        div.hover-highlight:not(.flex) {
-            display: none !important;
-        }
-    }
+	if yt-darknesss {
 
-    if theme !=none {
-        div.content > div > div > div > a > span:not(.text-moderator-light) {
-            color: var(--color-1) !important;
-        }
+		.hyperchat-root,
+		.hyperchat-root>div.w-full>div.flex {
+			background: black !important;
+		}
+	}
 
-        div.content > div > div > div > a > span.text-moderator-light {
-            color: green !important;
-        }
+	if hc-hideHyperchatInfo {
 
-        div.content > div > div > div > a > span.text-member-light {
-            color: var(--color-2) !important;
-        }
-    }
+		div.hover-highlight:not(.flex) {
+			display: none !important;
+		}
+	}
 
-    if theme==aqutan {
-        :root {
-            --color-1: rgb(59, 136, 213);
-            --color-2: rgb(240, 98, 146);
-        }
-    }
+	if theme !=none {
 
-    if hc-hideScrollbars {
-        * {
-            scrollbar-width: none !important;
-        }
+		div.content>div>div>div>a>span:not(.text-moderator-light) {
+			color: var(--color-1) !important;
+		}
 
-        div.hyperchat-root div.w-full {
-            padding-bottom: 4px !important;
-        }
-    }
+		div.content>div>div>div>a>span.text-moderator-light {
+			color: green !important;
+		}
+
+		div.content>div>div>div>a>span.text-member-light {
+			color: var(--color-2) !important;
+		}
+	}
+
+	if theme==aqutan {
+		:root {
+			--color-1: rgb(59, 136, 213);
+			--color-2: rgb(240, 98, 146);
+		}
+	}
+
+	if hc-hideScrollbars {
+
+		* {
+			scrollbar-width: none !important;
+		}
+
+		div.hyperchat-root div.w-full {
+			padding-bottom: 4px !important;
+		}
+	}
 }
