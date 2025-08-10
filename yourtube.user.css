@@ -1,58 +1,59 @@
 /* ==UserStyle==
 
-@name						YourTube
-@namespace					https://github.com/Himither
-@version					1.0.0
+@name					YourTube
+@namespace				https://github.com/Himither
+@version				1.1.0
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
-@author						Himither
-@license					MIT
+@author					Himither
+@license				MIT
 @preprocessor				stylus
 
 @var text Youtube			"━━━━━━⮞【YouTube】" '_'
 
-@var checkbox				yt-darknesss						"La+ Darknesss (Black YouTube)" 								1
-@var number					yt-menuWidth						"Change side menu width (YouTube default: 240px)" 				[420, 170, 1080, 1, "px"]
-@var select					theme								"Select a theme" {
+@var checkbox				yt-darknesss					"La+ Darknesss (Black YouTube)" 					1
+@var number				yt-menuWidth					"Change side menu width (YouTube default: 240px)" 			[420, 170, 1080, 1, "px"]
+@var select				theme						"Select a theme" {
 
-"None*":					"none",
-"Aqua":						"aqutan"
+"None*":				"none",
+"Aqua":					"aqutan"
 
 }
-@var checkbox				yt-hideMinimenu						"Hide the small left sidemenu in Home & Shorts" 				0
-@var checkbox				yt-posts							"Show YouTube posts on top in Home"								0
+@var checkbox				yt-hideMinimenu					"Hide the small left sidemenu in Home & Shorts" 			0
+@var checkbox				yt-posts					"Show YouTube posts on top in Home"					0
 
 @var text YouTubeWatch		"━━━━━━⮞【YT Watch】" '_'
 
-@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 					1
-@var checkbox				yt-centerTheatreMode				"Centered & full height theatre mode video" 					1
-@var checkbox				yt-playlistChatFullHeight			"Use full height for playlist or chat" 							1
-@var checkbox				yt-pauseHeader						"Show header only on pause when watching videos or shorts" 		1
-@var checkbox				yt-borderlessChat					"Remove border around chat" 									1
-@var checkbox				yt-borderlessPlaylist				"Remove border around playlist" 								1
-@var checkbox				yt-saveButtonTweaks					"Tweaks to ensure saveButton accessibility" 					0
+@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 				1
+@var checkbox				yt-centerTheatreMode				"Centered & full height theatre mode video" 				1
+@var checkbox				yt-playlistChatFullHeight			"Use full height for playlist or chat" 					1
+@var checkbox				yt-pauseHeader					"Show header only on pause when watching videos or shorts" 		1
+@var checkbox				yt-borderlessChat				"Remove border around chat" 						1
+@var checkbox				yt-borderlessPlaylist				"Remove border around playlist" 					1
+@var checkbox				yt-saveButtonTweaks				"Tweaks to ensure saveButton accessibility" 				0
 
 @var text YouTubeShorts		"━━━━━━⮞【YT Shorts】" '_'
 	
-@var checkbox				yt-hideShortsSidebar				"Hide shorts in right sidebar" 									0
-@var checkbox				yt-hideShortsHome					"Hide shorts in Home" 											0
+@var checkbox				yt-hideShortsSidebar				"Hide shorts in right sidebar" 						0
+@var checkbox				yt-hideShortsHome				"Hide shorts in Home" 							0
 
 @var text YouTubeChat		"━━━━━━⮞【YT Chat】" '_'
 
-@var number					ytc-chatWidth						"Change chat width (YouTube default: 402px)" 					[402, 170, 1080, 1, "px"]
-@var text     				ytc-customLabel   					"Custom chat label text (wrapped in quotes)"					"Default"
-@var checkbox				ytc-hideTopFansButton				"Hide top fans button" 											0
-@var checkbox				ytc-hideChatMenuButton				"Hide chat menu button" 										0
-@var checkbox				ytc-hideChatCloseButton				"Hide chat close button" 										0
+@var number				ytc-chatWidth					"Change chat width (YouTube default: 402px)"				[402, 170, 1080, 1, "px"]
+@var number				ytc-emojiPickerHeight				"Change emoji picker height (YouTube default: 252px)"			[252, 100, 600, 1, "px"]
+@var text     				ytc-customLabel   				"Custom chat label text (wrapped in quotes)"				"Default"
+@var checkbox				ytc-hideTopFansButton				"Hide top fans button" 							0
+@var checkbox				ytc-hideChatMenuButton				"Hide chat menu button" 						0
+@var checkbox				ytc-hideChatCloseButton				"Hide chat close button" 						0
 
 @var text Hyperchat			"━━━━━━⮞【Hyperchat】" '_'
 
-@var checkbox				hc-hideHyperchatInfo				"Hide Hyperchat Notice"											0
+@var checkbox				hc-hideHyperchatInfo				"Hide Hyperchat Notice"							0
 
 @var text Scrollbars		"━━━━━━⮞【Scrollbars】" '_'
 
-@var checkbox				yt-hideScrollbars					"Hide YouTube scrollbars" 										0
-@var checkbox				ytc-hideScrollbars					"Hide YouTube-Chat scrollbars" 									0
-@var checkbox				hc-hideScrollbars					"Hide Hyperchat scrollbars" 									0
+@var checkbox				yt-hideScrollbars				"Hide YouTube scrollbars" 						0
+@var checkbox				ytc-hideScrollbars				"Hide YouTube-Chat scrollbars" 						0
+@var checkbox				hc-hideScrollbars				"Hide Hyperchat scrollbars" 						0
 
 ==/UserStyle== */
 @-moz-document url-prefix("https://www.youtube.com/") {
@@ -347,6 +348,8 @@ url-prefix("https://www.youtube.com/shorts") {
 
 @-moz-document url-prefix("https://www.youtube.com/live_chat") {
 
+
+
 	if yt-darknesss {
 
 		yt-live-chat-message-input-renderer,
@@ -366,6 +369,26 @@ url-prefix("https://www.youtube.com/shorts") {
 		#separator.yt-live-chat-renderer,
 		#panel-pages.yt-live-chat-renderer {
 			border: black !important;
+		}
+	}
+
+	if ytc-emojiPickerHeight !=252 {
+		[has-picker-open]:has(#emoji[selected]) {
+			#panel-pages.yt-live-chat-renderer {
+				height: ytc-emojiPickerHeight;
+			}
+
+			#input-panel,
+			#live-chat-message-input,
+			#container,
+			#pickers,
+			#emoji {
+				height: 100%;
+			}
+
+			#emoji {
+				max-height: unset;
+			}
 		}
 	}
 
