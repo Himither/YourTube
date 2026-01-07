@@ -10,50 +10,49 @@
 
 @var text Youtube			"━━━━━━⮞【YouTube】" '_'
 
-@var checkbox				yt-darknesss					"La+ Darknesss (Black YouTube)" 					1
-@var number				yt-menuWidth					"Change side menu width (YouTube default: 240px)" 			[420, 170, 1080, 1, "px"]
-@var select				theme						"Select a theme" {
+@var checkbox				yt-darknesss					"La+ Darknesss (Black YouTube)" 							1
+@var number				yt-menuWidth					"Change side menu width (YouTube default: 240px)" 					[420, 170, 1080, 1, "px"]
+@var select				theme						"Select alternate chat theme" {
 
 "None*":				"none",
 "Aqua":					"aqutan"
 
 }
-@var checkbox				yt-hideMinimenu					"Hide the small left sidemenu in Home & Shorts" 			0
-@var checkbox				yt-posts					"Show YouTube posts on top in Home"					0
+@var checkbox				yt-hideMinimenu					"Hide the small left sidemenu in Home & Shorts" 					0
+@var checkbox				yt-posts					"Show YouTube posts on top in Home"							0
 
 @var text YouTubeWatch		"━━━━━━⮞【YT Watch】" '_'
 
-@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 				1
-@var checkbox				yt-centerTheatreMode				"Centered & full height theatre mode video" 				1
-@var checkbox				yt-playlistChatFullHeight			"Use full height for playlist or chat" 					1
-@var checkbox				yt-pauseHeader					"Show header only on pause when watching videos or shorts" 		1
-@var checkbox				yt-borderlessChat				"Remove border around chat" 						1
-@var checkbox				yt-borderlessPlaylist				"Remove border around playlist" 					1
-@var checkbox				yt-saveButtonTweaks				"Tweaks to ensure saveButton accessibility" 				0
+@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 						1
+@var checkbox				yt-centerTheatreMode				"Centered & full height theatre mode video" 						1
+@var checkbox				yt-playlistChatFullHeight			"Use full height for playlist or chat" 							1
+@var checkbox				yt-pauseHeader					"Show header only on pause when watching videos or shorts" 				1
+@var checkbox				yt-borderlessChat				"Remove border around chat" 								1
+@var checkbox				yt-borderlessPlaylist				"Remove border around playlist" 							1
 
 @var text YouTubeShorts		"━━━━━━⮞【YT Shorts】" '_'
 	
-@var checkbox				yt-hideShortsSidebar				"Hide shorts in right sidebar" 						0
-@var checkbox				yt-hideShortsHome				"Hide shorts in Home" 							0
+@var checkbox				yt-hideShortsSidebar				"Hide shorts in right sidebar" 								0
+@var checkbox				yt-hideShortsHome				"Hide shorts in Home" 									0
 
 @var text YouTubeChat		"━━━━━━⮞【YT Chat】" '_'
 
-@var number				ytc-chatWidth					"Change chat width (YouTube default: 402px)"				[402, 170, 1080, 1, "px"]
-@var number				ytc-emojiPickerHeight				"Change emoji picker height (YouTube default: 252px)"			[252, 100, 600, 1, "px"]
-@var text     				ytc-customLabel   				"Custom chat label text (wrapped in quotes)"				"Default"
-@var checkbox				ytc-hideTopFansButton				"Hide top fans button" 							0
-@var checkbox				ytc-hideChatMenuButton				"Hide chat menu button" 						0
-@var checkbox				ytc-hideChatCloseButton				"Hide chat close button" 						0
+@var number				ytc-chatWidth					"Change chat width (YouTube default: 402px)"						[402, 170, 1080, 1, "px"]
+@var number				ytc-emojiPickerHeight				"Change emoji picker height (YouTube default: 252px)"					[252, 100, 600, 1, "px"]
+@var text     				ytc-customLabel   				"Custom chat label text (wrapped in quotes)"						"Default"
+@var checkbox				ytc-hideTopFansButton				"Hide top fans button" 									0
+@var checkbox				ytc-hideChatMenuButton				"Hide chat menu button" 								0
+@var checkbox				ytc-hideChatCloseButton				"Hide chat close button" 								0
 
 @var text Hyperchat			"━━━━━━⮞【Hyperchat】" '_'
 
-@var checkbox				hc-hideHyperchatInfo				"Hide Hyperchat Notice"							0
+@var checkbox				hc-hideHyperchatInfo				"Hide Hyperchat Notice"									0
 
 @var text Scrollbars		"━━━━━━⮞【Scrollbars】" '_'
 
-@var checkbox				yt-hideScrollbars				"Hide YouTube scrollbars" 						0
-@var checkbox				ytc-hideScrollbars				"Hide YouTube-Chat scrollbars" 						0
-@var checkbox				hc-hideScrollbars				"Hide Hyperchat scrollbars" 						0
+@var checkbox				yt-hideScrollbars				"Hide YouTube scrollbars" 								0
+@var checkbox				ytc-hideScrollbars				"Hide YouTube-Chat scrollbars" 								0
+@var checkbox				hc-hideScrollbars				"Hide Hyperchat scrollbars" 								0
 
 ==/UserStyle== */
 @-moz-document url-prefix("https://www.youtube.com/") {
@@ -153,12 +152,12 @@ url-prefix("https://www.youtube.com/clip"),
 url-prefix("https://www.youtube.com/shorts") {
 
 	#anchored-panel:has([target-id="engagement-panel-structured-description"][visibility="ENGAGEMENT_PANEL_VISIBILITY_HIDDEN"]):not(:has([target-id="engagement-panel-comments-section"][visibility="ENGAGEMENT_PANEL_VISIBILITY_EXPANDED"])) {
-		//This is a little fix for a stupid bug where the left border of the description/comment panel on the short page is visible even when the panel is hidden
+		/* This is a little fix for a stupid bug where the left border of the description/comment panel on the short page is visible even when the panel is hidden */
 		border-color: transparent;
 	}
 
 	.ytp-offline-slate-background {
-		//Ensures that stream thumbnails aren't cropped
+		/* Ensures that stream thumbnails aren't cropped */
 		background-size: contain;
 	}
 
@@ -170,6 +169,15 @@ url-prefix("https://www.youtube.com/shorts") {
 
 	if yt-centerDefaultView {
 
+		#page-manager:has(ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]):has(#movie_player.playing-mode),
+		#page-manager:has(ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]):has(#movie_player.seeking-mode) {
+			margin-top: 0;
+
+			#secondary {
+				margin-top: var(--ytd-toolbar-offset);
+			}
+		}
+
 		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_] {
 			overflow-x: hidden;
 
@@ -178,7 +186,7 @@ url-prefix("https://www.youtube.com/shorts") {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				height: calc(100dvh - ((var(--ytd-margin-6x) + var(--ytd-toolbar-offset))));
+				height: calc(100dvh - var(--ytd-margin-6x));
 			}
 
 			#player:has(#movie_player:is(.playing-mode, .seeking-mode))>#player-container-outer {
@@ -288,54 +296,22 @@ url-prefix("https://www.youtube.com/shorts") {
 	}
 
 	if yt-borderlessChat {
+		#separator.yt-live-chat-renderer {
+			border-bottom-color: transparent;
+		}
+
 		#chat {
 			border-color: transparent !important;
+		}
+
+		#panel-pages.yt-live-chat-renderer {
+			border-top-color: transparent
 		}
 	}
 
 	if yt-borderlessPlaylist {
 		#container.ytd-playlist-panel-renderer {
 			border: 1px solid transparent;
-		}
-	}
-
-	if yt-saveButtonTweaks {
-		#upload-info.ytd-video-owner-renderer {
-			display: none;
-		}
-
-		ytd-video-owner-renderer:has(:is(.yt-simple-endpoint:hover, #upload-info:hover)) #upload-info.ytd-video-owner-renderer {
-			display: flex;
-		}
-
-		:is(#owner, #actions.ytd-watch-metadata) {
-			width: fit-content;
-			min-width: unset;
-		}
-
-		ytd-subscribe-button-renderer {
-			width: fit-content !important;
-		}
-
-		:is(yt-button-view-model, #flexible-item-buttons, ytd-subscribe-button-renderer[subscribed]) .yt-spec-button-shape-next__button-text-content {
-			display: none;
-		}
-
-		:is(yt-button-view-model, #flexible-item-buttons) .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--icon-leading .yt-spec-button-shape-next__icon {
-			margin: 0;
-		}
-
-		#flexible-item-buttons {
-			display: flex;
-		}
-
-		#flexible-item-buttons>yt-button-view-model:has([d*="M18 4v15"]) {
-			order: -1;
-
-			& button {
-				background-color: #f1f1f1;
-				color: black;
-			}
 		}
 	}
 
@@ -348,7 +324,23 @@ url-prefix("https://www.youtube.com/shorts") {
 
 @-moz-document url-prefix("https://www.youtube.com/live_chat") {
 
+	if !yt-darknesss {
 
+		yt-live-chat-renderer,
+		yt-live-chat-message-input-renderer,
+		yt-live-chat-header-renderer,
+		yt-live-chat-ticker-renderer,
+		ytd-menu-popup-renderer,
+		#chat-messages,
+		#search-panel,
+		#contentWrapper {
+			background: transparent !important;
+		}
+
+		.yt-spec-button-shape-next--mono.yt-spec-button-shape-next--text:hover {
+			background: #202020 !important;
+		}
+	}
 
 	if yt-darknesss {
 
@@ -473,6 +465,14 @@ url-prefix("https://www.youtube.com/shorts") {
 }
 
 @-moz-document url-prefix("https://www.youtube.com/embed/hyperchat_embed") {
+
+	if !yt-darknesss {
+
+		.hyperchat-root,
+		.hyperchat-root>div.w-full>div.flex {
+			background: transparent !important;
+		}
+	}
 
 	if yt-darknesss {
 

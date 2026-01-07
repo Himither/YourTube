@@ -1,18 +1,33 @@
 {
-    "cSpell.words": [
-        "aqutan",
-        "borderless",
-        "darknesss",
-        "flexy",
-        "github",
-        "Holodex",
-        "hyperchat",
-        "Hyperchat",
-        "Minimenu",
-        "rgba",
-        "scrollbars",
-        "Scrollbars",
-        "sidemenu",
-        "unstarted"
-    ]
+	"[javascript]": {
+		"editor.defaultFormatter": null
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": null
+	},
+	"cSpell.words": [
+		"aqutan",
+		"borderless",
+		"darknesss",
+		"flexy",
+		"github",
+		"Holodex",
+		"hyperchat",
+		"Hyperchat",
+		"Minimenu",
+		"rgba",
+		"scrollbars",
+		"Scrollbars",
+		"sidemenu",
+		"unstarted"
+	],
+	"editor.defaultFormatter": null,
+	"editor.detectIndentation": false,
+	"editor.formatOnPaste": false,
+	"editor.formatOnSave": false,
+	"editor.formatOnType": false,
+	"editor.tabSize": 8,
+	"files.associations": {
+		"yourtube.user.css": "stylus"
+	}
 }
