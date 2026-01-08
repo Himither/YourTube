@@ -2,7 +2,7 @@
 
 @name					YourTube
 @namespace				https://github.com/Himither
-@version				1.1.1
+@version				1.1.2
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
 @author					Himither
 @license				MIT
@@ -169,11 +169,11 @@ url-prefix("https://www.youtube.com/shorts") {
 
 	if yt-centerDefaultView {
 
-		#page-manager.ytd-app:has(ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]) {
+		#page-manager.ytd-app:has(ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]):not(:has(ytd-watch-flexy[hidden])) {
 			margin-top: 0 !important;
 		}
 
-		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_] {
+		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]:not([hidden]) {
 			padding-top: var(--ytd-toolbar-height);
 		}
 
