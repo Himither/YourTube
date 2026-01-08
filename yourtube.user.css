@@ -169,17 +169,17 @@ url-prefix("https://www.youtube.com/shorts") {
 
 	if yt-centerDefaultView {
 
-		#page-mangaer {
-			margin-top: 0;
+		#page-manager.ytd-app:has(ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]) {
+			margin-top: 0 !important;
 		}
 
-		ytd-watch-flexy {
+		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_] {
 			padding-top: var(--ytd-toolbar-height);
 		}
 
 		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]:has(#movie_player.playing-mode),
 		ytd-watch-flexy[is-four-three-to-sixteen-nine-video_]:has(#movie_player.seeking-mode) {
-			padding-top: unset;
+			padding-top: 0;
 
 			#secondary {
 				margin-top: var(--ytd-toolbar-offset);
