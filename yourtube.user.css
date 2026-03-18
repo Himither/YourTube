@@ -2,7 +2,7 @@
 
 @name					YourTube
 @namespace				https://github.com/Himither
-@version				1.1.2
+@version				1.2.0
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
 @author					Himither
 @license				MIT
@@ -23,12 +23,13 @@
 
 @var text YouTubeWatch		"━━━━━━⮞【YT Watch】" '_'
 
-@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 						1
+@var checkbox				yt-centerDefaultView				"Centered & full height default view video" 						0
 @var checkbox				yt-centerTheatreMode				"Centered & full height theatre mode video" 						1
 @var checkbox				yt-playlistChatFullHeight			"Use full height for playlist or chat" 							1
 @var checkbox				yt-pauseHeader					"Show header only on pause when watching videos or shorts" 				1
 @var checkbox				yt-borderlessChat				"Remove border around chat" 								1
 @var checkbox				yt-borderlessPlaylist				"Remove border around playlist" 							1
+@var checkbox               		yt-hideAiButton					"Hide the 'Ask' AI button" 								0
 
 @var text YouTubeShorts		"━━━━━━⮞【YT Shorts】" '_'
 	
@@ -261,16 +262,12 @@ url-prefix("https://www.youtube.com/shorts") {
 	}
 
 	if yt-playlistChatFullHeight {
-		#secondary {
-			padding-top: 0 !important;
-		}
-
 		#secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-			height: calc(100dvh - var(--ytd-toolbar-height)) !important;
+			height: calc(100dvh - var(--ytd-toolbar-height)- var(--ytd-margin-3x)) !important;
 		}
 
 		#secondary:has(#playlist[collapsed]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-6x) - 68px) !important;
+			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-6x) - 68px - var(--ytd-margin-3x)) !important;
 			margin-bottom: var(--ytd-margin-6x);
 		}
 
@@ -281,17 +278,17 @@ url-prefix("https://www.youtube.com/shorts") {
 		}
 
 		#secondary #playlist:not([collapsed]) {
-			height: calc(100dvh - var(--ytd-toolbar-height)) !important;
+			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-3x)) !important;
 			max-height: unset !important;
 			margin-bottom: 0 !important;
 		}
 
 		#secondary #playlist:not([collapsed]) #container {
-			max-height: calc(100% - var(--ytd-toolbar-height)) !important;
+			max-height: calc(100% - var(--ytd-toolbar-height) - var(--ytd-margin-3x)) !important;
 		}
 
-		#secondary #chat-container:not(:has(#chat[collapsed])) #chat {
-			height: calc(100% - var(--ytd-toolbar-height)) !important;
+		#secondary #chat-container:not(:has(#chat[collapsed]) - var(--ytd-margin-3x)) #chat {
+			height: calc(100% - var(--ytd-toolbar-height) - var(--ytd-margin-3x)) !important;
 		}
 	}
 
@@ -326,6 +323,12 @@ url-prefix("https://www.youtube.com/shorts") {
 	if ytc-chatWidth!=402 {
 		ytd-watch-flexy {
 			--ytd-watch-flexy-sidebar-width: ytc-chatWidth !important;
+		}
+	}
+
+	if yt-hideAiButton {
+		:is(yt-button-view-model, ytd-menu-service-item-renderer):has(path[d^=M480-80q0-83]) {
+			display: none;
 		}
 	}
 }
