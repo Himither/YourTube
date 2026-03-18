@@ -19,9 +19,7 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 
 ## Features
 
-
 ### General
-
 * True black mode
 * Tweaks to ensure save (to playlist) button visibility
 * Adjust left side-menu width
@@ -29,34 +27,31 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 * Color themes (currently only one based on the Aqua theme from Holodex)
 
 ### Playback
-
 * Full height theatre mode & default view 
 * Hide header & right sidebar (without chat open) during playback
 
 ### Chat
-
 * Full height chat (and/or playlist)
 * Adjust chat width
 * Hide chat (and/or playlist) borders
 * Hide top-fans, menu and close button
 
 ### Shorts
-
 * Hide shorts in right sidebar
 * Hide shorts in home
 
 ### Hyperchat
-
 * Hide the hyperchat info messages that shows initially
 
 ### Scrollbars
-
 * Hide YouTube scrollbars
 * Hide YouTube-Chat scrollbars
 * Hide Hyperchat scrollbars
 
 ## Changelog
+### 1.2.0
+* Add hide ai "Ask" button option
+* Adjust chat/playlist option slightly
 
 ### 1.1.0
-
 * Add emoji picker height option
