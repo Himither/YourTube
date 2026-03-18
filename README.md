@@ -49,6 +49,9 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 * Hide Hyperchat scrollbars
 
 ## Changelog
+### 1.2.1
+* Fix chat/playlist option height (100% instead of 100dvh)
+
 ### 1.2.0
 * Add hide ai "Ask" button option
 * Adjust chat/playlist option slightly

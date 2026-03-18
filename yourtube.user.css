@@ -272,7 +272,7 @@ url-prefix("https://www.youtube.com/shorts") {
 		}
 
 		#secondary #chat:not([collapsed]) {
-			height: 100dvh !important;
+			height: 100% !important;
 			min-height: 0 !important;
 			margin-bottom: 0 !important;
 		}
