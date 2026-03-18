@@ -49,8 +49,9 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 * Hide Hyperchat scrollbars
 
 ## Changelog
-### 1.2.1
+### 1.2.2
 * Fix chat/playlist option height (100% instead of 100dvh)
+* Set base background color overwrite to !important cause youtube is changing stuff
 
 ### 1.2.0
 * Add hide ai "Ask" button option

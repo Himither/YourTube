@@ -2,7 +2,7 @@
 
 @name					YourTube
 @namespace				https://github.com/Himither
-@version				1.2.0
+@version				1.2.2
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
 @author					Himither
 @license				MIT
@@ -60,7 +60,7 @@
 
 	if yt-darknesss {
 		html[dark] {
-			--yt-spec-base-background: black;
+			--yt-spec-base-background: black !important;
 		}
 
 		#masthead-container #background,
