@@ -1,26 +1,5 @@
 {
-	"[javascript]": {
-		"editor.defaultFormatter": null
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": null
-	},
-	"cSpell.words": [
-		"aqutan",
-		"borderless",
-		"darknesss",
-		"flexy",
-		"github",
-		"Holodex",
-		"hyperchat",
-		"Hyperchat",
-		"Minimenu",
-		"rgba",
-		"scrollbars",
-		"Scrollbars",
-		"sidemenu",
-		"unstarted"
-	],
+	// Ensure VSC doesn't format EVER, because the Stylus extension can be particular about formatting.
 	"editor.defaultFormatter": null,
 	"editor.detectIndentation": false,
 	"editor.formatOnPaste": false,
