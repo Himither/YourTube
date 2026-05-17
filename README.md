@@ -57,6 +57,10 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 
 ## Changelog
 
+### 1.3.1
+
+* Adjust chat/playlist height a lot
+
 ### 1.3.0
 
 * Add option to hide the create button in header for non-creator
