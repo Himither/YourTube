@@ -2,7 +2,7 @@
 
 @name					YourTube
 @namespace				https://github.com/Himither
-@version				1.3.2
+@version				1.3.3
 @description				Black mode, centered & full height default view and theatre mode, hide borders & more
 @author					Himither
 @license				MIT
@@ -162,29 +162,22 @@ url-prefix("https://www.youtube.com/shorts") {
 	}
 
 	if yt-centerDefaultView {
-
 		ytd-watch-flexy[default-layout] {
-			#player:has(#movie_player.playing-mode),
-			#player:has(#movie_player.seeking-mode) {
+			#player:has(:is(.playing-mode, .seeking-mode)) {
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				height: calc(100dvh - var(--ytd-margin-6x));
 			}
 
-			#player:has(.playing-mode, .seeking-mode) > #player-container-outer {
+			:has(:is(.playing-mode, .seeking-mode)) #player-container-outer {
 				flex-grow: 1;
-				transform: translateY(calc(var(--ytd-margin-6x)/-2 + var(--ytd-toolbar-offset)/-2));
 			}
 
 			#columns:has(:is(.playing-mode, .seeking-mode)):has(#chat[collapsed]),
-			#columns:has(.playing-mode, .seeking-mode):not(:has(#chat)) {
+			#columns:has(.playing-mode):not(:has(#chat)),
+			#columns:has(.seeking-mode):not(:has(#chat)) {
 				transform: translateX(calc(var(--ytd-watch-flexy-sidebar-width) / 2));
-			}
-
-			#secondary {
-				visibility: visible;
-				opacity: 1;
 			}
 
 			#columns:has(:is(.playing-mode, .seeking-mode)):has(#chat[collapsed]) #secondary,
@@ -197,65 +190,68 @@ url-prefix("https://www.youtube.com/shorts") {
 	}
 
 	if yt-centerTheatreMode {
-		ytd-watch-flexy[full-bleed-player] #full-bleed-container {
-			min-height: calc(100dvh - var(--ytd-toolbar-offset)) !important;
-		}
+		ytd-watch-flexy[full-bleed-player] {
+			#full-bleed-container {
+				min-height: calc(100dvh - var(--ytd-toolbar-offset)) !important;
 
-		ytd-watch-flexy[full-bleed-player] .html5-video-container {
-			height: 100% !important;
-		}
+				.html5-video-container {
+					height: 100%;
 
-		ytd-watch-flexy[full-bleed-player] #movie_player .video-stream {
-			left: 0 !important;
-			top: 0 !important;
-			object-fit: contain !important;
-			height: 100% !important;
-			width: 100% !important;
-		}
-
-		if yt-pauseHeader {
-
-			ytd-watch-flexy[full-bleed-player]:has(:is(.playing-mode, .seeking-mode)) #full-bleed-container {
-				min-height: 100dvh !important;
+					.video-stream {
+						left: 0 !important;
+						top: 0 !important;
+						object-fit: contain;
+						height: 100% !important;
+						width: 100% !important;
+					}
+				}
 			}
 
+			if yt-pauseHeader {
+				&:has(:is(.playing-mode, .seeking-mode)) #full-bleed-container {
+					min-height: 100dvh !important;
+				}
 
-			ytd-watch-flexy[full-bleed-player]:has(:is(.playing-mode, .seeking-mode)) #chat {
-				top: 0;
-			}
 
-			ytd-watch-flexy[full-bleed-player] #chat {
-				transition: unset !important;
+				&:has(:is(.playing-mode, .seeking-mode)) #chat {
+					top: 0;
+				}
+
+				#chat {
+					transition: unset !important;
+				}
 			}
 		}
 	}
 
 	if yt-playlistChatFullHeight {
-		ytd-watch-flexy[default-layout] #secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-3x));
-		}
-
-		ytd-watch-flexy[default-layout] #chat:not([collapsed]) {
-			height: 100% !important;
-			min-height: 0 !important;
-			margin-bottom: 0;
-		}
-
-		ytd-watch-flexy[default-layout]:has(#playlist[collapsed]) #chat-container:not(:has(#chat[collapsed])) {
-			height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-3x) - 68px - var(--ytd-margin-4x))
-		}
-
-		if yt-pauseHeader {
-			ytd-watch-flexy[default-layout]:has(:is(.playing-mode, .seeking-mode)) #secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-				height: calc(100dvh - var(--ytd-margin-3x));
+		ytd-watch-flexy[default-layout] {
+			#secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
+				height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-3x));
 			}
 
-			ytd-watch-flexy[default-layout]:has(:is(.playing-mode, .seeking-mode)) #secondary #chat-container:has(#chat):not(:has(#chat[collapsed])) {
-				height: calc(100dvh - var(--ytd-margin-3x) - 68px - var(--ytd-margin-4x));
+			#chat:not([collapsed]) {
+				height: 100% !important;
+				min-height: 0 !important;
+				margin-bottom: 0;
 			}
 
-			ytd-watch-flexy[default-layout]:has(:is(.playing-mode, .seeking-mode)) #secondary #playlist:not([collapsed]) {
-				height: calc(100dvh - var(--ytd-margin-3x));
+			&:has(#playlist[collapsed]) #chat-container:not(:has(#chat[collapsed])) {
+				height: calc(100dvh - var(--ytd-toolbar-height) - var(--ytd-margin-3x) - 68px - var(--ytd-margin-4x))
+			}
+
+			if yt-pauseHeader {
+				&:has(:is(.playing-mode, .seeking-mode)) #secondary:has(#playlist[hidden]) #chat-container:has(#chat):not(:has(#chat[collapsed])) {
+					height: calc(100dvh - var(--ytd-margin-3x));
+				}
+
+				&:has(:is(.playing-mode, .seeking-mode)) #secondary #chat-container:has(#chat):not(:has(#chat[collapsed])) {
+					height: calc(100dvh - var(--ytd-margin-3x) - 68px - var(--ytd-margin-4x));
+				}
+
+				&:has(:is(.playing-mode, .seeking-mode)) #secondary #playlist:not([collapsed]) {
+					height: calc(100dvh - var(--ytd-margin-3x));
+				}
 			}
 		}
 	}

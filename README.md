@@ -57,6 +57,10 @@ Black mode, centered & full height default view and theatre mode, hide borders &
 
 ## Changelog
 
+### 1.3.4
+
+* Fix seeking-mode styling
+
 ### 1.3.2
 
 * Fix horizontal centering of default layout
